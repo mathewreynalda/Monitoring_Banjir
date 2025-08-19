@@ -1,6 +1,8 @@
 <?php
+//test webhook
 // config.php — Hostinger + Composer (phpdotenv)
-if (session_status() === PHP_SESSION_NONE) session_start();
+if (session_status() === PHP_SESSION_NONE)
+  session_start();
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -18,7 +20,8 @@ if (!$dotenvLoaded) {
 }
 
 // helper ambil env
-function envv(string $key, $default = null) {
+function envv(string $key, $default = null)
+{
   $v = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
   return ($v === false || $v === null) ? $default : $v;
 }
@@ -29,7 +32,7 @@ date_default_timezone_set(envv('APP_TIMEZONE', 'Asia/Jakarta'));
 $host_main = envv('DB_MAIN_HOST', 'localhost');
 $user_main = envv('DB_MAIN_USER', '');
 $pass_main = envv('DB_MAIN_PASS', '');
-$db_main   = envv('DB_MAIN_NAME', '');
+$db_main = envv('DB_MAIN_NAME', '');
 
 $conn = @new mysqli($host_main, $user_main, $pass_main, $db_main);
 if ($conn->connect_error) {
@@ -41,7 +44,7 @@ $conn->set_charset('utf8mb4');
 $host_arch = envv('DB_ARCH_HOST', $host_main);
 $user_arch = envv('DB_ARCH_USER', '');
 $pass_arch = envv('DB_ARCH_PASS', '');
-$db_arch   = envv('DB_ARCH_NAME', '');
+$db_arch = envv('DB_ARCH_NAME', '');
 $conn_arch = null;
 
 if ($db_arch && $user_arch) {
@@ -55,5 +58,7 @@ if ($db_arch && $user_arch) {
 }
 
 // Telegram
-if (!defined('TELEGRAM_TOKEN'))   define('TELEGRAM_TOKEN',   (string)envv('TELEGRAM_TOKEN', ''));
-if (!defined('TELEGRAM_CHAT_ID')) define('TELEGRAM_CHAT_ID', (string)envv('TELEGRAM_CHAT_ID', ''));
+if (!defined('TELEGRAM_TOKEN'))
+  define('TELEGRAM_TOKEN', (string) envv('TELEGRAM_TOKEN', ''));
+if (!defined('TELEGRAM_CHAT_ID'))
+  define('TELEGRAM_CHAT_ID', (string) envv('TELEGRAM_CHAT_ID', ''));

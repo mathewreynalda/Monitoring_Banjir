@@ -1,0 +1,4 @@
+2025-07-29 04:28:33 => ⚠️ Peringatan Banjir: Status Siaga!
+Ketinggian air 8.46 cm (pukul 2025-07-29 04:28:28).
+2025-07-29 04:28:53 => ⚠️ Peringatan Banjir: Status Bahaya!
+Ketinggian air 12.13 cm (pukul 2025-07-29 04:28:49).

@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  background: #f6fbff;
+  color: #222;
+  font-size: 1em;
+}
+
+/* SIDEBAR (admin) */
+.sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: 200px; min-width: 150px;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: #fff; display: flex; flex-direction: column;
+  z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  border-top-right-radius: 22px; border-bottom-right-radius: 22px;
+  padding-bottom: 18px;
+}
+.sidebar-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 1.05em; padding: 18px 17px 11px 17px;
+  font-weight: 700; letter-spacing: 1px;
+}
+.sidebar-logo img { width: 38px; height: 38px; border-radius: 50%; }
+.sidebar nav { display: flex; flex-direction: column; gap: 7px; margin-top: 16px; }
+.sidebar .nav-link {
+  color: #fff; text-decoration: none; font-weight: 500; font-size: 1.06em;
+  padding: 10px 22px; border-radius: 12px; transition: background .18s, color .18s;
+  margin: 0 10px; display: flex; align-items: center; gap: 8px;
+}
+.sidebar .nav-link.active, .sidebar .nav-link:hover {
+  background: rgba(255,255,255,0.18); color: #ffd700;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  margin-left: 200px;
+  padding: 22px 38px 60px 38px;
+  min-height: 100vh;
+  background: #f6fbff;
+  transition: margin-left 0.23s;
+}
+@media (max-width:1100px){ .main-content { padding: 16px 2vw 50px 2vw; } }
+@media (max-width:900px){ .main-content { padding: 10px 1vw 20px 1vw; } }
+
+/* SIDEBAR MOBILE */
+.hamburger { display:none; background:none; border:none; color:#222; font-size:1.4em; }
+@media (max-width: 750px) {
+  #toggleSidebar { display: block; }
+  .sidebar {
+    position: fixed; left: 0; top: 0; width: 100vw; height: 54px;
+    min-width: unset; max-width: unset; flex-direction: row !important; align-items: center;
+    padding: 0 10px; border-radius: 0 0 16px 16px; z-index: 40;
+    box-shadow: 0 2px 9px rgba(0,0,0,0.07); transition: height .28s cubic-bezier(.4,1.4,.6,1), box-shadow .18s;
+    overflow: hidden;
+  }
+  .sidebar.open { height: 210px; box-shadow: 0 6px 20px rgba(0,0,0,0.13); }
+  .sidebar-logo { padding: 8px 8px !important; font-size: 1em; }
+  .sidebar nav {
+    flex-direction: row !important; gap: 5px; margin-top: 0 !important;
+    transition: opacity .19s; opacity: 0; pointer-events: none;
+  }
+  .sidebar.open nav { opacity: 1; pointer-events: auto; }
+  .sidebar .nav-link { font-size: 0.98em; padding: 7px 9px; border-radius: 8px; margin: 0 2px; }
+  .main-content { margin-left: 0 !important; padding-top: 68px; }
+}
+
+/* HEADER dalam main-content */
+.main-header h1 { margin: 0; }
+
+/* KARTU STATUS & CHART */
+.dashboard-cards {
+  display: flex; justify-content: center; gap: 21px;
+  margin: 26px auto 36px auto; flex-wrap: wrap; max-width: 1100px;
+}
+.status-card {
+  background: #fff; border-radius: 18px; padding: 22px 32px;
+  display: flex; align-items: center; gap: 18px;
+  min-width: 180px; min-height: 110px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border-left: 10px solid #007bff;
+  transition: border .18s, box-shadow .18s, transform .2s;
+  font-size: 1.12em; flex: 1 0 210px; max-width: 380px;
+}
+.status-card:hover { box-shadow: 0 8px 32px rgba(0,150,255,0.14); transform: translateY(-2px) scale(1.018); }
+.status-card-icon { font-size: 2.3em; color: #0af; min-width: 41px; text-align: center; }
+.status-card b { font-size: 1.55em; font-weight: 700; }
+.status-card[style*="green"] b { color: #16b318; }
+.status-card[style*="orange"] b { color: #ff9600; }
+.status-card[style*="red"] b, .status-card[style*="darkred"] b { color: #b80c00; }
+
+.chart-container {
+  padding: 5px; background: white; border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.1); margin: 20px 0;
+}
+
+/* TABEL DATA */
+.responsive-table {
+  width: 100%; overflow-x: auto; background: white;
+  border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-top: 16px;
+}
+.responsive-table table { border-collapse: collapse; width: 100%; font-size: 1em; min-width: 600px; }
+.responsive-table thead { background: #007bff; color: white; }
+.responsive-table th, .responsive-table td {
+  padding: 12px 18px; text-align: center; border-bottom: 1px solid #ddd;
+}
+.responsive-table tr:hover { background-color: #f1f9ff; }
+.responsive-table tbody tr:nth-child(even) { background-color: #f9fcff; }
+
+/* EXPORT SECTION */
+.export-section {
+  margin-top: 20px; display: flex; align-items: center; flex-wrap: wrap;
+  gap: 12px; padding: 18px; background: #ffffff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.export-section label { font-weight: 600; }
+.export-section input[type="date"], .export-section select {
+  padding: 8px 14px; border-radius: 8px; border: 1px solid #ccc; font-size: 1em; font-family: 'Poppins', sans-serif;
+}
+.export-section button {
+  background: #007bff; color: white; padding: 10px 16px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; transition: background .2s ease;
+}
+.export-section button:hover { background: #0056b3; }
+.export-section .btn-archive { background: #6c757d; }
+.export-section .btn-archive:hover { background: #545b62; }
+
+/* TELEGRAM GRID (kiri-kanan seragam) */
+.telegram-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:20px;
+  align-items:stretch;
+  margin-top:12px;
+}
+.tg-card{
+  background:#ffffff;
+  border-radius:16px;
+  padding:20px 24px;
+  box-shadow:0 10px 26px rgba(0, 0, 0, 0.06);
+  border:1px solid #eef4ff;
+  display:flex;
+  flex-direction:column;
+}
+.tg-card h2{ margin:0 0 14px 0; font-size:1.8rem; line-height:1.2; }
+.tg-meta{ color:#333; margin:6px 0 0 0; }
+.tg-form{ display:flex; gap:12px; align-items:center; margin-top:6px; }
+.tg-form input[type="text"]{
+  flex:1; height:42px; padding:10px 12px; border:1px solid #cfd9ea; border-radius:10px;
+  font-family:'Poppins', sans-serif; font-size:1rem; background:#fff;
+}
+.tg-form .btn-action{ height:42px; padding:0 16px; border-radius:10px; font-weight:600; }
+@media (max-width: 900px){ .telegram-grid{ grid-template-columns: 1fr; } }
+
+/* MODAL EDIT PROFIL + MODAL UMUM */
+#profileModal {
+  display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
+  background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(3px); z-index: 999;
+  align-items: center; justify-content: center;
+}
+#profileModal > div {
+  background: #fff; padding: 30px; border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  max-width: 400px; width: 90%;
+}
+#profileModal h2 { margin-top: 0; margin-bottom: 16px; font-size: 1.5em; }
+#profileModal form { margin-bottom: 20px; }
+#profileModal input {
+  width: 100%; padding: 10px; margin: 6px 0; border: 1px solid #ccc; border-radius: 5px;
+}
+#profileModal .btn-action { width: 100%; margin-top: 8px; }
+
+.custom-modal {
+  display: none; position: fixed; z-index: 999; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px);
+  justify-content: center; align-items: center;
+}
+.custom-modal-content {
+  background: white; padding: 24px 32px; border-radius: 12px;
+  text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  max-width: 400px; width: 90%;
+}
+.modal-buttons { margin-top: 20px; display: flex; justify-content: center; gap: 12px; }
+
+/* BUTTONS */
+.btn-action{
+  background-color: #007bff; color: #fff; padding: 7px 14px; font-size: 14px;
+  border: none; border-radius: 5px; cursor: pointer;
+}
+.btn-action:hover{ background-color: #0056b3; }
+.btn-archive{ background-color: #6c757d; }
+.btn-archive:hover{ background-color: #5a6268; }
+.btn-reset{ background-color: #ffc107; color: black; }
+.btn-reset:hover{ background-color: #e0a800; }
+.btn-cancel{ background-color: #aaa; }
+
+/* STATUS text classes */
+.status-normal { color: green; font-weight: bold; }
+.status-siaga  { color: orange; font-weight: bold; }
+.status-bahaya { color: red; font-weight: bold; }
+.status-evakuasi { color: darkred; font-weight: bold; }
+
+/* ===== FOOTER (admin) — clean, tidak nabrak sidebar ===== */
+.main-footer{
+  background: none;                 /* hilangkan background gelap */
+  color: #666;
+  padding: 18px 24px;
+  text-align: center;
+  font-size: .98em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  letter-spacing: .2px;
+  border-top: 1px solid #e9eef5;    /* garis pemisah tipis */
+  margin-left: 200px;               /* sejajar dengan konten (hindari nabrak sidebar) */
+}
+@media (max-width: 750px){
+  .main-footer{ margin-left: 0; }   /* di mobile, sidebar jadi topbar */
+}
